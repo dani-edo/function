@@ -2,45 +2,22 @@ package main
 
 import "fmt"
 
-type transformFn func(int) int
-
 func main() {
-	numbers := []int{1, 2, 3, 4}
-	moreNumber := []int{5, 1, 2}
-	doubled := transformNumbers(&numbers, double)
-	tripled := transformNumbers(&numbers, triple)
+	numbers := []int{1, 2, 3}
 
-	fmt.Println(doubled, tripled)
+	transformed := transformNumbers(&numbers, func(number int) int {
+		return number * 2
+	})
 
-	transformerFn1 := getTransformedFunction(&numbers)
-	transformerFn2 := getTransformedFunction(&moreNumber)
-
-	transformedNumbers := transformNumbers(&numbers, transformerFn1)
-	moreTransformedNumbers := transformNumbers(&moreNumber, transformerFn2)
-
-	fmt.Println(transformedNumbers, moreTransformedNumbers)
+	fmt.Println(transformed)
 }
 
-func transformNumbers(numbers *[]int, transform transformFn) []int {
+func transformNumbers(numbers *[]int, transform func(int) int) []int {
 	dNumbers := []int{}
+
 	for _, val := range *numbers {
 		dNumbers = append(dNumbers, transform(val))
 	}
 
 	return dNumbers
-}
-
-func getTransformedFunction(numbers *[]int) transformFn {
-	if (*numbers)[0] == 1 {
-		return double
-	}
-	return triple
-}
-
-func double(number int) int {
-	return number * 2
-}
-
-func triple(number int) int {
-	return number * 3
 }
