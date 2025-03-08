@@ -3,22 +3,14 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(factorial(5))
+	sumup := sumup([]int{1, 2, 3})
+	fmt.Println(sumup)
 }
 
-func factorial(number int) int {
-	if number == 0 {
-		return 1
+func sumup(numbers []int) int {
+	sum := 0
+	for _, number := range numbers {
+		sum += number
 	}
-	return number * factorial(number-1)
-
-	// result := 1
-
-	// for i := 1; i <= number; i++ {
-	// 	result = result * i
-	// }
-
-	// return result
+	return sum
 }
-
-// factorial of 5 = 5 * 4 * 3 * 2 * 1
