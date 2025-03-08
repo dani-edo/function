@@ -3,35 +3,17 @@ package main
 import "fmt"
 
 func main() {
-	numbers := []int{1, 2, 3}
-
-	double := createTransformer(2)
-	triple := createTransformer(3)
-
-	transformed := transformNumbers(&numbers, func(number int) int {
-		return number * 2
-	})
-
-	doubled := transformNumbers(&numbers, double)
-	tripled := transformNumbers(&numbers, triple)
-
-	fmt.Println(transformed, doubled, tripled)
+	fmt.Println(factorial(5))
 }
 
-func transformNumbers(numbers *[]int, transform func(int) int) []int {
-	dNumbers := []int{}
+func factorial(number int) int {
+	result := 1
 
-	for _, val := range *numbers {
-		dNumbers = append(dNumbers, transform(val))
+	for i := 1; i <= number; i++ {
+		result = result * i
 	}
 
-	return dNumbers
+	return result
 }
 
-// factory function
-func createTransformer(factor int) func(int) int {
-	// closure
-	return func(number int) int {
-		return number * factor
-	}
-}
+// factorial of 5 = 5 * 4 * 3 * 2 * 1
