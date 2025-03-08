@@ -3,13 +3,17 @@ package main
 import "fmt"
 
 func main() {
-	sumup := sumup(1, 2, 3)
-	fmt.Println(sumup)
+	numbers := []int{1, 2, 3}
+	sumupNumbers := sumup(0, numbers...) // ... unpacks the slice
+	fmt.Println(sumupNumbers)
+
+	// sumup := sumup(1, 2, 3)
+	// fmt.Println(sumup)
 }
 
 // the parameters are variadic (dynamic)
-func sumup(numbers ...int) int {
-	sum := 0
+func sumup(startingValue int, numbers ...int) int { // ... catch all arguments
+	sum := startingValue
 	for _, number := range numbers {
 		sum += number
 	}
